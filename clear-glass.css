@@ -1,0 +1,129 @@
+/* Progressive enhancement: the original stylesheet remains the default fallback. */
+.glass-optics, .portrait-lens { display: none; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+
+html.clear-glass { --ink: #11263e; --muted: #3e536b; --accent: #1c538b; }
+.clear-glass body {
+  background-color: #e5eef8;
+  background:
+    radial-gradient(ellipse 91vw 114vh at 107% -7%, transparent 48%, rgba(255,255,255,.88) 48.15%, rgba(255,255,255,.3) 48.4%, transparent 48.8%),
+    radial-gradient(ellipse 90vw 130vh at -22% 99%, transparent 66%, rgba(255,255,255,.8) 66.2%, rgba(149,183,228,.36) 66.7%, transparent 67.3%),
+    radial-gradient(ellipse 100vw 65vh at 80% 116%, rgba(157,207,216,.62), transparent 65%),
+    linear-gradient(127deg, #f3f8fe 8%, #c9def8 30%, #edf5ff 44%, #b7d0f0 48%, #edf5fc 64%, #d4e8f0 88%);
+  background-size: 100% 1400px;
+}
+.clear-glass body::before { display: none; }
+
+/* Broad layout wrappers are transparent; the smaller individual surfaces are lenses. */
+.clear-glass :is(.hero,.focus-strip,.experience-list,.background-section,.contact-section) {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  overflow: visible;
+}
+.clear-glass .header-inner { width: min(790px, calc(100% - 2rem)); min-height: 70px; gap: 2rem; z-index: 1; }
+.clear-glass .header-inner nav { gap: 1.5rem; }
+.clear-glass .hero { padding: 0; gap: 2rem; margin-top: 3rem; grid-template-columns: minmax(0,1.35fr) minmax(270px,.85fr); }
+.clear-glass .hero-copy { padding: 2.7rem; border-radius: 34px; }
+.clear-glass .hero h1 { font-size: clamp(4rem,6.5vw,5.75rem); }
+
+/* Clear surfaces keep a faint tint, with curved refraction confined to the rim. */
+.clear-glass .glass-surface {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(142deg,rgba(255,255,255,.19),rgba(255,255,255,.025) 50%,rgba(236,246,255,.12));
+  border: 1px solid rgba(255,255,255,.74);
+  box-shadow: 0 20px 44px rgba(40,76,120,.10), 0 3px 9px rgba(42,78,126,.04), inset 0 1px 1px rgba(255,255,255,.96), inset 0 -1px 2px rgba(68,104,145,.11);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.clear-glass .glass-optics {
+  display: block;
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+.clear-glass .glass-surface > :not(.glass-optics) { position: relative; z-index: 1; }
+.clear-glass .glass-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(ellipse 65% 55% at var(--reflection-x,18%) var(--reflection-y,0%), rgba(255,255,255,.26), transparent 75%);
+}
+.clear-glass .glass-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  padding: 1.5px;
+  pointer-events: none;
+  background: conic-gradient(from var(--reflection-angle,145deg), rgba(255,255,255,.16), rgba(255,255,255,.98) 15%, rgba(139,184,234,.48) 31%, rgba(255,255,255,.03) 47%, rgba(92,145,201,.30) 59%, rgba(255,255,255,.96) 77%, rgba(255,255,255,.16));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+.clear-glass .header-cv { background: rgba(255,255,255,.2); border-color: rgba(255,255,255,.8); box-shadow: inset 0 1px 0 #fff, 0 4px 10px rgba(55,97,142,.06); }
+.clear-glass .button { background: linear-gradient(145deg,rgba(34,93,157,.96),rgba(25,68,118,.94)); }
+.clear-glass .portrait-block { padding: .7rem .7rem 0; border-radius: 31px; background: rgba(255,255,255,.035); border-color: rgba(255,255,255,.85); box-shadow: 0 25px 50px rgba(26,72,129,.14),inset 0 1px 1px #fff,inset 0 -1px 1px rgba(73,114,164,.15); }
+.clear-glass .portrait-lens { display: block; position: absolute; inset: 0; z-index: 2; border-radius: inherit; pointer-events: none; background: transparent; box-shadow: inset 0 0 14px rgba(255,255,255,.08); }
+.clear-glass .portrait-lens::before { background: linear-gradient(130deg,rgba(255,255,255,.10),transparent 35%); }
+.clear-glass .portrait-frame { isolation: isolate; }
+.clear-glass .focus-strip { margin-top: 1.7rem; padding-inline: 0; border-bottom: 1px solid rgba(62,104,149,.18); border-radius: 0; }
+.clear-glass .focus-strip ul { gap: .6rem 1.2rem; }
+.clear-glass .publication { background: radial-gradient(ellipse at 85% 6%,rgba(134,183,229,.4),transparent 70%),linear-gradient(125deg,#17324f,#305d85); border-color: rgba(255,255,255,.9); }
+.clear-glass .publication-results { border-radius: 0 29px 29px 0; border-block: 0; border-right: 0; background: rgba(225,242,255,.07); box-shadow: inset 1px 0 1px rgba(255,255,255,.24); }
+.clear-glass .publication-results::after { display: none; }
+
+.clear-glass .experience-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1.4rem; padding: 0; }
+.clear-glass .experience-row { display: block; padding: 2rem; border-radius: 28px; }
+.clear-glass .experience-row + .experience-row { border-top: 1px solid rgba(255,255,255,.74); }
+.clear-glass .experience-meta { flex-direction: row; flex-wrap: wrap; gap: .3rem 1rem; margin-bottom: 1.5rem; }
+.clear-glass .experience-row h3 { line-height: 1.3; }
+.clear-glass .background-section .section-heading { grid-template-columns: 210px minmax(0,1fr); }
+.clear-glass .background-section { margin-top: 0; padding: 1rem 0 3rem; }
+.clear-glass .background-grid { margin-left: 0; gap: 1.4rem; }
+.clear-glass .background-grid > div { padding: 2rem; border-radius: 28px; }
+.clear-glass .contact-inner { padding: 0; }
+.clear-glass .contact-links { padding: 2rem; border-radius: 25px; }
+.clear-glass .contact-section { margin-bottom: 1.5rem; }
+
+@media (max-width:1000px) {
+  .clear-glass .hero { gap: 1.5rem; grid-template-columns: minmax(0,1.25fr) minmax(240px,.8fr); }
+  .clear-glass .hero-copy { padding: 2rem; }
+  .clear-glass .hero h1 { font-size: 4.3rem; }
+  .clear-glass .experience-row { padding: 1.5rem; }
+}
+@media (max-width:760px) {
+  .clear-glass .header-inner { width: calc(100% - 2rem); gap: .5rem; }
+  .clear-glass .header-inner nav { gap: .5rem; }
+  .clear-glass .hero { grid-template-columns: 1fr; margin-top: 1.2rem; gap: 1.4rem; }
+  .clear-glass .hero-copy { padding: 2rem 1.5rem; border-radius: 28px; }
+  .clear-glass .hero h1 { font-size: clamp(3.2rem,12vw,5rem); }
+  .clear-glass .portrait-block { width: min(100%,430px); }
+  .clear-glass .focus-strip { margin-top: .9rem; }
+  .clear-glass .experience-list { grid-template-columns: 1fr; }
+  .clear-glass .background-section .section-heading { grid-template-columns: 1fr; }
+  .clear-glass .background-grid > div { padding: 1.5rem; }
+  .clear-glass .publication-results { border-radius: 0 0 25px 25px; border-left: 0; border-top: 1px solid rgba(255,255,255,.18); }
+  .clear-glass .contact-inner { gap: 1.5rem; }
+  .clear-glass .contact-links { padding: 1.5rem; width: 100%; }
+  .footer { flex-wrap: wrap; }
+  .footer-links { gap: 1rem; }
+}
+@media (max-width:460px) {
+  .clear-glass .hero-copy { padding: 1.8rem 1.2rem; }
+}
+@media print {
+  .clear-glass .glass-surface { background: #fff; box-shadow: none; border: 0; }
+  .clear-glass .glass-surface::before,.clear-glass .glass-surface::after,.clear-glass .glass-optics,.clear-glass .portrait-lens,.navigation-optics { display: none; }
+  .clear-glass .experience-list { display: block; }
+}

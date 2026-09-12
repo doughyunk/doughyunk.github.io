@@ -1,11 +1,19 @@
 # Doug Hyun Kim — personal website
 
-A responsive academic bio and portfolio with an Apple-inspired Liquid Glass appearance: frosted panels, translucent navigation, soft blue light, and rounded surfaces. The website uses plain HTML and CSS with no build step or package installation. It includes reduced-motion, reduced-transparency, and unsupported-browser fallbacks.
+A responsive academic bio with clear, reflective glass surfaces, optical edge refraction, and subtle chromatic dispersion. The updated page covers biography, research, experience, education, and contact information. The selected projects section has been removed.
+
+The original frosted design is preserved at `frosted.html` with its original `frosted.css`. The main page also retains the original base stylesheet as an automatic fallback when WebGL is unavailable, initialization fails, JavaScript fails to load, or reduced transparency is requested.
+
+The website uses plain HTML, CSS, and JavaScript with no build step or package installation. Pointer-driven reflections respect reduced-motion preferences. The main bio and links work without JavaScript.
 
 ## Files
 
-- `index.html`: biography, publication, experience, projects, education, and contact links.
+- `index.html`: biography, publication, experience, education, and contact links.
 - `styles.css`: responsive design, colors, typography, and print styles.
+- `clear-glass.css` and `clear-glass.js`: progressive enhancement for clear glass and reflective highlights.
+- `frosted.html` and `frosted.css`: preserved original design.
+- `assets/vendor/liquidGL.js`: WebGL navigation renderer, with license and exact source revision alongside it.
+- `assets/vendor/liquid-glass.js`: optional SVG panel refraction renderer, also with license and exact source revision.
 - `assets/doug-hyun-kim.webp`: web-optimized encoding of the supplied photo.
 - `assets/CV_Doug_Hyun_Kim.pdf`: the supplied CV, unchanged.
 - `assets/favicon.svg`: site icon.
@@ -22,4 +30,12 @@ A responsive academic bio and portfolio with an Apple-inspired Liquid Glass appe
 
 Edit `index.html` to update your biography or work. Replace `assets/CV_Doug_Hyun_Kim.pdf` to update the downloadable CV while keeping the existing links. The photo framing is controlled by `.portrait-frame img` in `styles.css`; the image content has not been retouched.
 
-Content was adapted from the supplied CV. LinkedIn is linked directly; profile content could not be independently read. Project performance figures preserve the CV's simulation, projected, or estimated context.
+Content was adapted from the supplied CV. LinkedIn is linked directly; profile content could not be independently read. Project performance figures in the preserved original page retain the CV's simulation, projected, or estimated context.
+
+## Open-source optics
+
+The navigation uses [naughtyduk/liquidGL](https://github.com/naughtyduk/liquidGL), pinned to commit `17ccba9d2660289dba5a3dedb047868a505eeedf`, under the MIT license. The original source is bundled unchanged, with its license in `assets/vendor/liquidGL.LICENSE`. It provides WebGL refraction, chromatic dispersion and specular highlights with `frost: 0`. The library supports WebGL-enabled Chrome, Edge, Firefox and Safari, subject to device GPU support. Its page snapshot stays in the browser.
+
+The site integrates the pinned renderer's canvas into the navigation's stacking context, preventing it from covering page text. Snapshot resolution is bounded to approximately six million pixels; animated highlights are capped at 30 fps and paused in hidden tabs. Reduced motion disables animated highlights and pointer reflections. The renderer's frame scheduling fields are used in this integration, so review `clear-glass.js` before upgrading the pinned vendor source.
+
+Static panels use clear CSS surfaces and pointer-responsive reflective rims. On Chromium, [deepika-builds/liquid-glass](https://github.com/deepika-builds/liquid-glass), pinned to `98ed97bd99def529493fd37177228810f6422f6d`, adds SVG edge refraction at zero blur. This small MIT-licensed source is also bundled unchanged. Panels retain clear CSS reflections in browsers without SVG backdrop support. Off-screen SVG lenses initialize as they approach the viewport. All content remains selectable HTML; no runtime CDN or external image requests are needed.

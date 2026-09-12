@@ -10,20 +10,17 @@
   <meta property="og:title" content="Doug Hyun Kim | AI Hardware & Compute-in-Memory">
   <meta property="og:description" content="Ph.D. student at Purdue University. Research across memory devices, circuits, and deep learning systems.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="clear-glass.css">
-  <script src="assets/vendor/liquid-glass.js" defer></script>
-  <script src="assets/vendor/liquidGL.js" defer></script>
-  <script src="clear-glass.js" defer></script>
+  <link rel="stylesheet" href="frosted.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-  <header class="site-header" data-liquid-ignore>
+  <header class="site-header">
     <div class="container header-inner">
       <a class="wordmark" href="#about" aria-label="Doug Hyun Kim, home">DHK<span aria-hidden="true">.</span></a>
       <nav aria-label="Main navigation">
         <a href="#research">Research</a>
         <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
         <a href="#contact">Contact</a>
       </nav>
       <a class="header-cv" href="assets/CV_Doug_Hyun_Kim.pdf">View CV <span aria-hidden="true">↗</span></a>
@@ -47,7 +44,6 @@
       <figure class="portrait-block">
         <div class="portrait-frame">
           <img src="assets/doug-hyun-kim.webp" alt="Doug Hyun Kim standing in front of an aquarium" width="3024" height="4032" fetchpriority="high">
-          <span class="portrait-lens" aria-hidden="true"></span>
         </div>
         <figcaption>Based in West Lafayette, Indiana</figcaption>
       </figure>
@@ -102,8 +98,35 @@
       </div>
     </section>
 
+    <section id="projects" class="project-section" aria-labelledby="projects-title">
+      <div class="container section">
+        <div class="section-heading"><p class="eyebrow">03 / Selected projects</p><h2 id="projects-title">From bitcells to systems.</h2></div>
+        <div class="project-list">
+          <article class="project-row">
+            <div class="project-number" aria-hidden="true">01</div>
+            <div class="project-content"><p class="project-category">Memory & circuit design · Apr 2026</p><h3>2T–2MTJ MRAM digital CiM macro</h3><p>Designed and evaluated a compact bitcell and 64 × 64 macro for binary matrix-vector multiplication in GF 22FDX, including write verification, parasitic analysis, and variation simulation.</p><p class="project-result">Projected 0.71 μm² bitcell area · Estimated 171.7 TOPS/W</p><p class="tools">Cadence Virtuoso / HSPICE / Layout XL</p></div>
+          </article>
+          <article class="project-row">
+            <div class="project-number" aria-hidden="true">02</div>
+            <div class="project-content"><p class="project-category">SRAM & in-memory logic · Dec 2025</p><h3>Differential SRAM for robust CiM</h3><p>Built a 128 × 128 distributed-RC array model to investigate virtual-ground instability in 8+T SRAM, then evaluated a 10T differential bitcell for in-memory Boolean logic.</p><p class="project-result">&gt;2× sense-margin improvement · 48% lower dynamic energy in simulation</p><p class="tools">Synopsys HSPICE / 45 nm PTM</p></div>
+          </article>
+          <article class="project-row">
+            <div class="project-number" aria-hidden="true">03</div>
+            <div class="project-content"><p class="project-category">Architecture & workload analysis · May 2025</p><h3>Full-stack CiM architecture analysis</h3><p>Analyzed device-to-architecture trade-offs for ResNet-18 and GPT-2, studying workload mapping, memory hierarchy, dataflows, and the energy and latency costs of arrays, peripherals, and data movement.</p><p class="tools">CiMLoop / DNN workload modeling</p></div>
+          </article>
+        </div>
+        <details class="more-projects">
+          <summary><span>Two more projects</span><span class="details-symbol" aria-hidden="true">+</span></summary>
+          <div class="additional-grid">
+            <article><p class="project-category">Digital design automation · May 2025</p><h3>DPLL-based SAT solver</h3><p>Implemented a Python SAT solver with two-watched literals and VSIDS heuristics. Achieved up to 330× speedup and 2.8× memory reduction on complex benchmarks.</p><p class="tools">Python / DPLL / VSIDS</p></article>
+            <article><p class="project-category">VLSI arithmetic design · Dec 2024</p><h3>Wallace tree multiplier & MAC</h3><p>Completed a DRC/LVS-clean 8-bit multiplier layout with 1.43 ns worst-case post-layout delay and 506.08 fJ energy consumption, then integrated it into a MAC unit.</p><p class="tools">Cadence Virtuoso / Spectre / Layout XL</p></article>
+          </div>
+        </details>
+      </div>
+    </section>
+
     <section class="container section background-section" aria-labelledby="background-title">
-      <div class="section-heading"><p class="eyebrow">03 / Background</p><h2 id="background-title">Education & toolkit.</h2></div>
+      <div class="section-heading"><p class="eyebrow">04 / Background</p><h2 id="background-title">Education & toolkit.</h2></div>
       <div class="background-grid">
         <div>
           <h3 class="small-heading">Education</h3>
@@ -129,6 +152,6 @@
       </div>
     </section>
   </main>
-  <footer class="container footer"><span>© 2026 Doug Hyun Kim</span><div class="footer-links"><a href="frosted.html">Frosted version</a><a href="#about">Back to top ↑</a></div></footer>
+  <footer class="container footer"><span>© 2026 Doug Hyun Kim</span><a href="#about">Back to top ↑</a></footer>
 </body>
 </html>
