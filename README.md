@@ -1,8 +1,8 @@
 # Doug Hyun Kim — personal website
 
-A responsive academic bio with clear, reflective glass surfaces, optical edge refraction, and subtle chromatic dispersion. The updated page covers biography, research, experience, education, and contact information. The selected projects section has been removed.
+A responsive academic bio with a dark aurora background and layered clear-glass surfaces. The updated page covers biography, research, experience, education, and contact information. The selected projects section has been removed.
 
-The original frosted design is preserved at `frosted.html` with its original `frosted.css`. The main page also retains the original base stylesheet as an automatic fallback when WebGL is unavailable, initialization fails, JavaScript fails to load, or reduced transparency is requested.
+The main page uses a static-site adaptation of the MIT-licensed `@zakisheriff/liquid-glass` filter and layer model. The earlier `liquidGL` WebGL design is preserved at `liquidgl.html`, and the original frosted design remains at `frosted.html`. The base stylesheet is the automatic fallback when JavaScript fails to load or reduced transparency is requested.
 
 The website uses plain HTML, CSS, and JavaScript with no build step or package installation. Pointer-driven reflections respect reduced-motion preferences. The main bio and links work without JavaScript.
 
@@ -10,7 +10,8 @@ The website uses plain HTML, CSS, and JavaScript with no build step or package i
 
 - `index.html`: biography, publication, experience, education, and contact links.
 - `styles.css`: responsive design, colors, typography, and print styles.
-- `clear-glass.css` and `clear-glass.js`: progressive enhancement for clear glass and reflective highlights.
+- `layered-glass.css` and `layered-glass.js`: dark aurora background and layered clear-glass enhancement.
+- `liquidgl.html`, `clear-glass.css`, and `clear-glass.js`: preserved WebGL version.
 - `frosted.html` and `frosted.css`: preserved original design.
 - `assets/vendor/liquidGL.js`: WebGL navigation renderer, with license and exact source revision alongside it.
 - `assets/vendor/liquid-glass.js`: optional SVG panel refraction renderer, also with license and exact source revision.
@@ -34,7 +35,11 @@ Content was adapted from the supplied CV. LinkedIn is linked directly; profile c
 
 ## Open-source optics
 
-The navigation uses [naughtyduk/liquidGL](https://github.com/naughtyduk/liquidGL), pinned to commit `17ccba9d2660289dba5a3dedb047868a505eeedf`, under the MIT license. The original source is bundled unchanged, with its license in `assets/vendor/liquidGL.LICENSE`. It provides WebGL refraction, chromatic dispersion and specular highlights with `frost: 0`. The library supports WebGL-enabled Chrome, Edge, Firefox and Safari, subject to device GPU support. Its page snapshot stays in the browser.
+The main version adapts the shared SVG filter formula and layered surface approach from [@zakisheriff/liquid-glass](https://github.com/zakisheriff/Liquid-Glass) 0.1.3, repository commit `a3e4c6367faca9ba9b7de0910ce61d4e45af5677`. The package declares the MIT license. Its React dependency is omitted; a small native JavaScript adapter adds one shared filter and pointer-responsive reflections to the existing semantic HTML. Attribution, source metadata, and the MIT notice are stored in `assets/vendor/zaki-liquid-glass.*`.
+
+The filter uses a low-strength SVG displacement map and 0.3px blur over a high-contrast background. Browsers without SVG backdrop filters retain the clear tint, reflective border and readable text. Reduced-transparency preferences return to the opaque base design, while reduced-motion preferences disable pointer movement.
+
+The preserved WebGL version uses [naughtyduk/liquidGL](https://github.com/naughtyduk/liquidGL), pinned to commit `17ccba9d2660289dba5a3dedb047868a505eeedf`, under the MIT license. The original source is bundled unchanged, with its license in `assets/vendor/liquidGL.LICENSE`. It provides WebGL refraction, chromatic dispersion and specular highlights with `frost: 0`. The library supports WebGL-enabled Chrome, Edge, Firefox and Safari, subject to device GPU support. Its page snapshot stays in the browser.
 
 The site integrates the pinned renderer's canvas into the navigation's stacking context, preventing it from covering page text. Snapshot resolution is bounded to approximately six million pixels; animated highlights are capped at 30 fps and paused in hidden tabs. Reduced motion disables animated highlights and pointer reflections. The renderer's frame scheduling fields are used in this integration, so review `clear-glass.js` before upgrading the pinned vendor source.
 

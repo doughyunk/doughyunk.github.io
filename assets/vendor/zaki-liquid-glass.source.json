@@ -1,0 +1,8 @@
+{
+  "package": "@zakisheriff/liquid-glass",
+  "version": "0.1.3",
+  "repository": "https://github.com/zakisheriff/Liquid-Glass",
+  "commit": "a3e4c6367faca9ba9b7de0910ce61d4e45af5677",
+  "adapted_file": "src/filters/LiquidGlassFilter.tsx",
+  "license": "MIT"
+}
